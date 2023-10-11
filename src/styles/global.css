@@ -1,0 +1,22 @@
+:root {
+  --primary: #36e79e;
+
+  --text-primary: #36e79e;
+  --text-light: #fff;
+}
+
+@font-face {
+  font-family: "Glancyr";
+  src: url("/fonts/Glancyr-Variable.ttf") format("truetype");
+  font-weight: 100 1000;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/fonts/Figtree-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}

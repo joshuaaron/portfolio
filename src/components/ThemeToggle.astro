@@ -1,0 +1,12 @@
+<div data-theme-control="" data-themes="light variant dark">
+    <div class="theme-status sr-only"></div>
+    <label class="theme-label sr-only" for="theme-input">Update the theme by sliding the control</label>
+    <input id="theme-input" type="range" min="0" max="2" step="1" />
+</div>
+
+<script>
+    const control = document.querySelector("[data-theme-control]");
+    if (!control) return;
+
+    const input = control.querySelector("input");
+</script>

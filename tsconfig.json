@@ -1,7 +1,21 @@
 {
     "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
+        // Base Options,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+        "target": "ES2022",
+        "resolveJsonModule": true,
+        "moduleDetection": "force",
+
+        "strict": true,
+        "noUncheckedIndexedAccess": true,
+
+        "moduleResolution": "NodeNext",
+        "module": "NodeNext",
+
         "lib": ["ES2022"],
-        "moduleResolution": "NodeNext"
+        "baseUrl": "src"
     }
 }
+// https://x.com/mattpocockuk/status/1701619240686485799?s=20

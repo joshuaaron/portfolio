@@ -1,1 +1,1 @@
-import {} from 'gsap';
+import * as gsap from 'gsap';

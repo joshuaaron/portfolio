@@ -1,0 +1,9 @@
+@layer reset {
+    :where(body) {
+        font-family: Figtree, sans-serif;
+    }
+
+    :where(h1, h2, h3, h4) {
+        font-family: Glancyr, sans-serif;
+    }
+}
