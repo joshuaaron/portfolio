@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import "../styles/index.css";
 import Container from "components/Container.astro";
 import ThemeToggle from "components/ThemeToggle.astro";
+import Navbar from "components/nav/Navbar.astro";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -14,8 +15,23 @@ import ThemeToggle from "components/ThemeToggle.astro";
 -->
     <main>
         <Container>
-            <ThemeToggle />
+            <Navbar>
+                <ThemeToggle />
+            </Navbar>
+        </Container>
+        <Container>
             <ComingSoon />
         </Container>
     </main>
 </Layout>
+
+<style>
+    main {
+        display: grid;
+        height: 100dvh;
+        grid-template-areas:
+            "header"
+            "content";
+        grid-template-rows: var(--header-height, auto) 1fr;
+    }
+</style>

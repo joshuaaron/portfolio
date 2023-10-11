@@ -1,0 +1,42 @@
+---
+import Container from "../Container.astro";
+---
+
+<nav>
+    <ul class="nav-items disabled">
+        <li>templates</li>
+        <li>about</li>
+        <li>contact</li>
+    </ul>
+    <slot />
+</nav>
+
+<style>
+    nav {
+        height: 60px;
+        grid-area: header;
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr;
+
+        @media (min-width: 768px) {
+            grid-template-columns: 160px 1fr 160px;
+
+            .nav-items {
+                display: flex;
+                grid-column: 2 / 3;
+                margin-inline: auto;
+            }
+        }
+    }
+
+    .nav-items {
+        display: none;
+        gap: 3rem;
+        color: var(--color-text);
+
+        &.disabled {
+            opacity: 0.3;
+        }
+    }
+</style>

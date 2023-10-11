@@ -1,9 +1,29 @@
 @layer reset {
-    :where(body) {
-        font-family: Figtree, sans-serif;
-    }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-    :where(h1, h2, h3, h4) {
-        font-family: Glancyr, sans-serif;
-    }
+  :where(html) {
+    height: 100%;
+    margin: 0;
+    box-sizing: inherit;
+  }
+
+  :where(body) {
+    min-height: 100dvh;
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    transition: background 0.2s ease-out;
+  }
+
+  :where(h1, h2, h3, h4) {
+    font-family: Glancyr, sans-serif;
+  }
+
+  :where(ul, li) {
+    list-style: none;
+  }
 }

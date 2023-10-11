@@ -1,12 +1,120 @@
-<div data-theme-control="" data-themes="light variant dark">
+<div data-theme-control data-themes="light, variant, dark">
     <div class="theme-status sr-only"></div>
     <label class="theme-label sr-only" for="theme-input">Update the theme by sliding the control</label>
     <input id="theme-input" type="range" min="0" max="2" step="1" />
+    <img data-theme-icon="light" src="/sun.svg" alt="light theme sun icon" width="32" height="32" />
+    <img data-theme-icon="variant" src="/cloudy.svg" alt="variant theme sun icon" width="32" height="32" />
+    <img data-theme-icon="dark" src="/moon.svg" alt="dark theme moon icon" width="32" height="32" />
 </div>
 
-<script>
-    const control = document.querySelector("[data-theme-control]");
-    if (!control) return;
+<style>
+    @layer components {
+        [data-theme-control] {
+            inline-size: 160px;
+            padding: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+        input[type="range"] {
+            --thumb-size: 24px;
+            --thumb-block-offset: var(--thumb-size) / 2;
+            --track-size: calc(var(--thumb-size) / 4);
+            --track-color: #595959;
 
-    const input = control.querySelector("input");
+            width: 100%;
+            -webkit-appearance: none;
+            background: transparent;
+
+            &::-webkit-slider-runnable-track {
+                height: var(--track-size);
+                background: var(--track-color);
+                border-radius: 16px;
+                cursor: pointer;
+            }
+
+            &::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                height: var(--thumb-size);
+                width: var(--thumb-size);
+                border-radius: calc(var(--thumb-size) / 2);
+                margin-top: -9px;
+                cursor: grab;
+                background-color: var(--color-text);
+                background-size: var(--thumb-size);
+                box-shadow: inset var(--color-primary) 0 0 0 6px;
+            }
+
+            &::-moz-range-track {
+                height: var(--track-size);
+                background: var(--track-color);
+                border-radius: 16px;
+                cursor: pointer;
+            }
+
+            &::-moz-range-thumb {
+                border: none;
+                border-radius: calc(var(--thumb-size) / 2);
+                background: var(--thumb-color);
+                background-color: var(--color-text);
+                background-size: var(--thumb-size);
+                height: var(--thumb-size);
+                width: var(--thumb-size);
+                box-shadow: inset var(--color-primary) 0 0 0 6px;
+            }
+        }
+
+        [data-theme-icon] {
+            display: none;
+        }
+        html[data-theme="light"] [data-theme-icon="light"] {
+            display: block;
+        }
+        html[data-theme="variant"] [data-theme-icon="variant"] {
+            display: block;
+        }
+        html[data-theme="dark"] [data-theme-icon="dark"] {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+    const html = document.documentElement;
+    const control = document.querySelector("[data-theme-control]") as HTMLElement;
+    const themeNames = Array.from((control?.dataset?.themes ?? "").split(", "));
+    const input = control?.querySelector("input");
+
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const setTheme = (value: number) => {
+        const theme = themeNames[value];
+        console.log(themeNames, theme);
+        if (!theme) return;
+
+        localStorage.setItem("_jrcodes-theme", theme);
+
+        html.dataset.theme = theme;
+        if (input) input.dataset.active = theme;
+    };
+
+    const init = () => {
+        const storedTheme = localStorage.getItem("_jrcodes-theme");
+        const initialTheme = storedTheme ? storedTheme : prefersDark ? "dark" : "light";
+        html.dataset.theme = initialTheme;
+        if (input) {
+            const idx = themeNames.indexOf(initialTheme) ?? 2;
+            input.value = idx.toString();
+            input.dataset.active = themeNames[idx];
+        }
+    };
+
+    init();
+
+    input?.addEventListener("input", (e: Event) => {
+        const { value } = e.target as HTMLInputElement;
+        setTheme(parseInt(value));
+        // updateThemeStatus(slider.value);
+    });
 </script>
