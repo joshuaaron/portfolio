@@ -1,0 +1,36 @@
+<div id="cursor"></div>
+
+<style>
+    #cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+        border: 2px solid #fff;
+    }
+</style>
+
+<script>
+    const cursor = document.getElementById("cursor");
+
+    if (cursor) {
+        document.addEventListener("mousemove", (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            gsap.to(cursor, { x, y, ease: "elastic.out(1.2,1)", duration: 1 });
+
+            const speed = Math.abs(e.movementX) + Math.abs(e.movementY);
+            if (speed > 3) {
+                const angle = (Math.atan2(e.movementX, e.movementY) / Math.PI) * 180 + 180;
+                if (angle != 0) {
+                    gsap.to(cursor, { rotate: -Math.abs(angle), duration: 0 });
+                }
+            }
+            const inertia = cursor.offsetHeight + (Math.abs(e.movementX) + Math.abs(ev.movementY));
+            gsap.to(cursor, { height: inertia, ease: "elastic.out(1.6,1)", duration: 2 });
+        });
+    }
+</script>

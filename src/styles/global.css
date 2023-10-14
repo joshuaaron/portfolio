@@ -18,5 +18,5 @@
   --font-heading: "Glancyr", sans-serif;
   --font-body: "Figtree", sans-serif;
 
-  --font-size-adaptive: clamp(24px, 4vw, 42px);
+  --font-size-adaptive: clamp(32px, 4vw, 44px);
 }

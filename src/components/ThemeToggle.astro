@@ -2,9 +2,11 @@
     <div class="theme-status sr-only"></div>
     <label class="theme-label sr-only" for="theme-input">Update the theme by sliding the control</label>
     <input id="theme-input" type="range" min="0" max="2" step="1" />
-    <img data-theme-icon="light" src="/sun.svg" alt="light theme sun icon" width="32" height="32" />
-    <img data-theme-icon="variant" src="/cloudy.svg" alt="variant theme sun icon" width="32" height="32" />
-    <img data-theme-icon="dark" src="/moon.svg" alt="dark theme moon icon" width="32" height="32" />
+    <span class="theme-icon-wrapper">
+        <img data-theme-icon="light" src="/sun.svg" alt="light theme sun icon" width="32" height="32" />
+        <img data-theme-icon="variant" src="/cloudy.svg" alt="variant theme sun icon" width="32" height="32" />
+        <img data-theme-icon="dark" src="/moon.svg" alt="dark theme moon icon" width="32" height="32" />
+    </span>
 </div>
 
 <style>
@@ -65,11 +67,19 @@
             }
         }
 
+        @starting-style {
+            [data-theme-icon] {
+                display: none;
+                opacity: 1;
+            }
+        }
         [data-theme-icon] {
             display: none;
+            transition: opacity 0.2s display 0.2s allow-discrete;
         }
         html[data-theme="light"] [data-theme-icon="light"] {
             display: block;
+            opacity: 1;
         }
         html[data-theme="variant"] [data-theme-icon="variant"] {
             display: block;
@@ -115,6 +125,5 @@
     input?.addEventListener("input", (e: Event) => {
         const { value } = e.target as HTMLInputElement;
         setTheme(parseInt(value));
-        // updateThemeStatus(slider.value);
     });
 </script>
