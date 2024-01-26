@@ -14,13 +14,13 @@
   :where(body) {
     min-height: 100dvh;
     margin: 0;
-    font-family: var(--font-body);
-    background: var(--color-bg);
-    transition: background 0.2s ease-out;
+    font-family: var(--font-family-body);
+    color: var(--color-body-font);
+    background: var(--color-body-bg);
   }
 
   :where(h1, h2, h3, h4) {
-    font-family: Glancyr, sans-serif;
+    font-family: var(--font-family-heading);
   }
 
   :where(ul, li) {

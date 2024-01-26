@@ -1,36 +1,86 @@
-<div id="cursor"></div>
+<div id='cursor'></div>
 
 <style>
     #cursor {
+        --size: 40px;
+        --x: 0;
+        --y: 0;
         position: fixed;
         top: 0;
         left: 0;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
+        transform: translate3d(calc(100vw * var(--x) - (var(--size) / 2)), calc(100vh * var(--y) - var(--size) / 2), 0);
+        width: var(--size);
+        height: var(--size);
         border-radius: 100px;
         border: 2px solid #fff;
+        pointer-events: none;
     }
 </style>
+<!--
+<script>
+    const cursorEl = document.querySelector('#cursor') as HTMLElement
+    const lerp = (a: number, b: number, speed: number) => (1 - speed) * a + speed * b
+
+    const target = { x: 0.5, y: 0.5 }
+    const cursor = { x: 0.5, y: 0.5 }
+    let raf: number | undefined
+
+    const update = () => {
+        cursor.x = lerp(cursor.x, target.x, 0.1)
+        cursor.y = lerp(cursor.y, target.y, 0.1)
+        cursorEl.style.setProperty('--x', `${cursor.x}`)
+        cursorEl.style.setProperty('--y', `${cursor.y}`)
+
+        const delta = Math.sqrt(Math.pow(target.x - cursor.x, 2) + Math.pow(target.y - cursor.y, 2))
+        if (delta < 0.001) {
+            raf && cancelAnimationFrame(raf)
+            raf = undefined
+            return
+        }
+        //or continue looping if mouse is moving
+        raf = requestAnimationFrame(update)
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+        target.x = e.clientX / window.innerWidth
+        target.y = e.clientY / window.innerHeight
+
+        if (!raf) raf = requestAnimationFrame(update)
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    raf = requestAnimationFrame(update)
+</script> -->
 
 <script>
-    const cursor = document.getElementById("cursor");
+    import gsap from 'gsap'
+    const cursor = document.getElementById('cursor')
+    const cursorHeight = cursor?.offsetHeight ?? 0
 
     if (cursor) {
-        document.addEventListener("mousemove", (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            gsap.to(cursor, { x, y, ease: "elastic.out(1.2,1)", duration: 1 });
+        document.addEventListener('mousemove', (ev) => {
+            const cursorX = ev.clientX
+            const cursorY = ev.clientY
+            gsap.to(cursor, {
+                x: cursorX,
+                y: cursorY,
+                ease: 'elastic.out(1.2,1)',
+                duration: 1
+            })
 
-            const speed = Math.abs(e.movementX) + Math.abs(e.movementY);
+            const speed = Math.abs(ev.movementX) + Math.abs(ev.movementY)
             if (speed > 3) {
-                const angle = (Math.atan2(e.movementX, e.movementY) / Math.PI) * 180 + 180;
+                const angle = (Math.atan2(ev.movementX, ev.movementY) / Math.PI) * 180 + 180
                 if (angle != 0) {
-                    gsap.to(cursor, { rotate: -Math.abs(angle), duration: 0 });
+                    gsap.to(cursor, { rotate: -Math.abs(angle), duration: 0 })
                 }
             }
-            const inertia = cursor.offsetHeight + (Math.abs(e.movementX) + Math.abs(ev.movementY));
-            gsap.to(cursor, { height: inertia, ease: "elastic.out(1.6,1)", duration: 2 });
-        });
+            const inertia = cursorHeight + (Math.abs(ev.movementX) + Math.abs(ev.movementY))
+            gsap.to(cursor, {
+                height: inertia,
+                ease: 'elastic.out(1.6,1)',
+                duration: 2
+            })
+        })
     }
 </script>
