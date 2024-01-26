@@ -1,7 +1,18 @@
 {
-    "extends": "astro/tsconfigs/strict",
-    "compilerOptions": {
-        "lib": ["ES2022"],
-        "moduleResolution": "NodeNext"
-    }
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "target": "ES2022",
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "lib": ["DOM", "ES2022"],
+    "baseUrl": "src",
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }

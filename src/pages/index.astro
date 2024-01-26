@@ -1,42 +1,23 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from '../layouts/Layout.astro'
+import '../styles/index.css'
+import Navbar from 'components/nav/Navbar.astro'
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-        <svg width="1284" height="5395" viewBox="0 0 1284 5395" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path id="line-path" d="M51.6754 0C51.6754 0 -114.824 260.5 168.5 391.5C626.492 603.261 998.159 524.866 689.499 315C412.999 127 268 158.5 232.5 315C190.913 498.334 698.741 645.588 689.499 823C680.546 994.891 405 1037 344.5 1260.5C224.01 1595.53 194.654 1943.87 325.5 2173.5C504.74 2488.05 1033.96 1855.29 1136.5 2202.5C1280.95 2691.64 958.742 2745.37 641.499 2880.2C545.76 2920.89 12.4999 2932.06 12.4999 2673.5C12.4999 2464 527 2503 444 2655.5C361 2808 407 3135.5 115.5 3443.5C-131.995 3705 1285.22 4203.19 1280 3767.5C1276.2 3450.43 1057.18 3611.77 699 3767.5C354 3917.5 200.676 5531.5 200.676 5531.5" stroke="black" stroke-width="6"/>
-            </svg>
-
-	</main>
+<Layout title='Welcome to Astro.'>
+    <header>
+        <Navbar />
+    </header>
+    <main></main>
 </Layout>
 
 <style>
-main {
-}
-
-#line-path {
-}
-
-</style>
-
-<script>
-    if (typeof ScrollTimeline !== 'undefined') {
-        const path = document.querySelector('path')
-        const totalLength = path?.getTotalLength() ?? 0
-
-        if (path) {
-            const tl = new ScrollTimeline({
-                source: document.documentElement,
-            });
-            path.style.strokeDasharray = `${totalLength}`
-            path.animate([
-                { strokeDashoffset: totalLength - 380, offset: 'entry 0%'},
-                { strokeDashoffset: 0, offset: 'exit 90%'}
-            ], {
-                timeline: tl
-            })
-        }
+    main {
+        display: grid;
+        height: 100dvh;
+        grid-template-areas:
+            'header'
+            'content';
+        grid-template-rows: var(--header-height, auto) 1fr;
     }
-</script>
+</style>

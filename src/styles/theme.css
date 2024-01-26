@@ -1,0 +1,27 @@
+:root[data-theme="light"] {
+  --color-primary: hsl(155, 79%, 60%);
+  /* --color-secondary: hsl(239 72% 54%); */
+  --color-text: hsl(197, 96%, 11%);
+  --color-text-accent: hsl(0, 0%, 21%);
+  --color-bg: hsl(0, 0%, 98%);
+  /* --color-bg-accent: hsl(210, 55%, 85%);
+  --color-bg-shadow: hsl(200 87% 90%); */
+}
+:root[data-theme="dark"] {
+  --color-primary: hsl(155, 79%, 70%);
+  /* --color-secondary: hsl(239 72% 54%); */
+  --color-text: hsl(0, 0%, 100%);
+  --color-text-accent: hsl(223, 11%, 64%);
+  --color-bg: hsl(212, 72%, 7%);
+  /* --color-bg-accent: hsl(210, 55%, 85%);
+    --color-bg-shadow: hsl(200 87% 90%); */
+}
+:root[data-theme="variant"] {
+  --color-primary: hsl(44, 28%, 57%);
+  /* --color-secondary: hsl(239 72% 54%); */
+  --color-text: hsl(44, 58%, 83%);
+  --color-text-accent: hsl(0, 0%, 96%);
+  --color-bg: hsl(198, 12%, 49%);
+  /* --color-bg-accent: hsl(210, 55%, 85%);
+    --color-bg-shadow: hsl(200 87% 90%); */
+}

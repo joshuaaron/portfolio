@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Aesthetiva';
+  src: url('/fonts/Aesthetiva.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('/fonts/Figtree-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+:root {
+  --font-family-heading: 'Aesthetiva', sans-serif;
+  --font-family-body: 'Figtree', sans-serif;
+  --font-size-adaptive: clamp(32px, 4vw, 44px);
+
+  --color-primary: #7b9cfd;
+  --color-body-bg: #191a1b;
+  --color-body-font: #9c9b9b;
+  --color-body-font-accent: #ffffff;
+
+  --font-size-display: clamp(120px, 3vw, 140px);
+  --font-size-h1: 68px;
+
+  /* LAYOUT RELATED */
+}

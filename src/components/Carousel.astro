@@ -2,22 +2,20 @@
 <button class="next">next</button>
 <button class="toggle">toggle overflow</button>
 <div class="wrapper">
-	<div class="box">1</div>
-	<div class="box">2</div>
-	<div class="box">3</div>
-	<div class="box" style="width:350px">4</div>
-	<div class="box">5</div>
-	<div class="box">6</div>
-	<div class="box">7</div>
-	<div class="box">8</div>
-	<div class="box">9</div>
-	<div class="box">10</div>
-	<div class="box">11</div>
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+  <div class="box" style="width:350px">4</div>
+  <div class="box">5</div>
+  <div class="box">6</div>
+  <div class="box">7</div>
+  <div class="box">8</div>
+  <div class="box">9</div>
+  <div class="box">10</div>
+  <div class="box">11</div>
 </div>
 
-<style>
-
-</style>
+<style></style>
 <!--
 
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous"></script>
@@ -25,8 +23,37 @@
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js" integrity="sha384-KwBSlAC5k+1tvNZWTOn4ZtdKZWx17q+Gs3Sls/mYDHx/F2TMg5dNmYYxmmtRLjt5" crossorigin="anonymous"></script> -->
 
 <script>
-    import { gsap } from 'gsap'
-    import { Draggable } from 'gsap/Draggable'
-    // https://codepen.io/joshuaaron/pen/gOZXjop <- Horizontal looping (no scroll)
-    gsap.
+  import { gsap } from "gsap";
+  import { Draggable } from "gsap/Draggable";
+  // https://codepen.io/joshuaaron/pen/gOZXjop <- Horizontal looping (no scroll)
+</script>
+<style>
+  main {
+  }
+
+  #line-path {
+  }
+</style>
+
+<script>
+  if (typeof ScrollTimeline !== "undefined") {
+    const path = document.querySelector("path");
+    const totalLength = path?.getTotalLength() ?? 0;
+
+    if (path) {
+      const tl = new ScrollTimeline({
+        source: document.documentElement,
+      });
+      path.style.strokeDasharray = `${totalLength}`;
+      path.animate(
+        [
+          { strokeDashoffset: totalLength - 380, offset: "entry 0%" },
+          { strokeDashoffset: 0, offset: "exit 90%" },
+        ],
+        {
+          timeline: tl,
+        },
+      );
+    }
+  }
 </script>

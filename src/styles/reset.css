@@ -1,0 +1,29 @@
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  :where(html) {
+    height: 100%;
+    margin: 0;
+    box-sizing: inherit;
+  }
+
+  :where(body) {
+    min-height: 100dvh;
+    margin: 0;
+    font-family: var(--font-family-body);
+    color: var(--color-body-font);
+    background: var(--color-body-bg);
+  }
+
+  :where(h1, h2, h3, h4) {
+    font-family: var(--font-family-heading);
+  }
+
+  :where(ul, li) {
+    list-style: none;
+  }
+}
